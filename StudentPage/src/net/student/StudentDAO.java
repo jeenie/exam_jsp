@@ -61,7 +61,6 @@ public class StudentDAO {
 			statement.setInt(1, id);
 			try(ResultSet resultSet = statement.executeQuery()) {
 				if(resultSet.next()) {
-					Student student = new Student(); student.setId(resultSet.getInt("id")); student.setStudentNumber(resultSet.getString("studentNumber")); student.setName(resultSet.getString("name")); student.setDepartmentId(resultSet.getInt("departmentId")); student.setYear(resultSet.getInt("year"));
 					return createStudent(resultSet);
 				}
 			}
