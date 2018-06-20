@@ -1,0 +1,16 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `book_count`(
+	IN ss VARCHAR(10),
+	IN st NVARCHAR(100)
+)
+
+BEGIN
+
+SELECT COUNT(b.id)
+FROM book b
+	LEFT JOIN category c ON b.categoryId = c.id	
+	LEFT JOIN publisher p ON b.publisherId = p.id
+WHERE	
+	(ss = '0') OR
+  	(ss = '1' AND b.title LIKE CONCAT('%', st, '%')) OR    
+	(ss = '2' AND c.categoryName LIKE st);
+END
